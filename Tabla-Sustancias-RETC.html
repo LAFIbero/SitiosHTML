@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mi primera tabla interactiva</title>
+
+<style>
+
+body{
+    font-family: "Inter", "Roboto", "Helvetica Neue", sans-serif;
+    margin:30px;
+    display:flex;
+    gap:30px;
+}
+
+table{
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #999;
+    width:90px;
+    height:45px;
+    text-align:center;
+}
+
+th{
+    background:#ececec;
+    color:rgb(103, 103, 103);
+}
+
+td{
+    cursor:pointer;
+    transition:.25s;
+}
+
+td:hover{
+    background:#ddd;
+}
+
+.seleccionada{
+    background:#4CAF50;
+    color:white;
+}
+
+#panel{
+
+    width:280px;
+    border:1px solid #bbb;
+    padding:15px;
+    border-radius:8px;
+    background:#fafafa;
+
+}
+
+/* Colores de los partidos */
+
+.reportados{
+    background:#007c04;
+    color:rgb(231, 250, 232);
+}
+
+.no_reportados{
+    background:#a75d58;
+    color:rgb(231, 250, 232);
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<table id="tabla">
+
+<thead>
+
+<tr>
+    <th></th>
+    <th>2005/08</th>
+    <th>2008/11</th>
+    <th>2011/14</th>
+    <th>2014/18</th>
+    <th>2018/21</th>
+    <th>2021/24</th>
+    <th>2024/27</th>
+</tr>
+
+
+
+</thead>
+
+<tbody>
+
+<tr>
+    <td class="reportados">1,1-Dicloro-1-Fluoroetano</td>
+    <td class="reportados">Acetaldehído</td>
+    <td class="reportados">Ácido sulfhídrico</td>
+    <td class="reportados">Acrilonitrilo</td>
+    <td class="reportados">Arsénico</td>
+    <td class="reportados">Benceno</td>
+    <td class="reportados">Bióxido de carbono</td>
+    <td class="reportados">Cadmio</td>
+    <td class="reportados">Cianuro inorgánico/orgánico</td>
+    <td class="reportados">Clorodifluorometano (HCFC-22)</td>
+    <td class="reportados">Cloruro de metileno</td>
+    <td class="reportados">Cromo</td>
+    <td class="reportados">Dioxinas</td>
+     <td class="reportados">Equipos y artículos electrónicos, eléctricos y domésticos</td>
+    <td class="reportados">Estireno (fenil etileno)</td> 
+</tr>
+
+<tr>
+    <td class="reportados">Formaldehído</td>
+    <td class="reportados">Mercurio</td>
+    <td class="reportados">Metano</td>
+    <td class="reportados">Níquel</td>
+    <td class="reportados">Plomo</td>
+    <td class="reportados">Toluen diisocianato</td>
+    <td class="reportados">Tolueno</td>
+    <td class="reportados">Xileno</td>
+    <td class="no_reportados">1,1,2- tricloroetano</td>
+    <td class="no_reportados">1,1,2,2- tetracloroetano</td>
+    <td class="no_reportados">1,1'- dimetil-4,4'-bipiridinio</td>
+    <td class="no_reportados">1,1-metileno bis(4-isocianato de ciclohexano)</td>
+    <td class="no_reportados">1,2,4- triclorobenceno</td>
+    <td class="no_reportados">1,2,5,6,9,10- hexabromociclodecano</td>
+    <td class="no_reportados">1,2- diclorobenceno</td> 
+</tr>
+
+<tr>
+    <td class="no_reportados">Formaldehído</td>
+    <td class="no_reportados">Mercurio</td>
+    <td class="no_reportados">Metano</td>
+    <td class="no_reportados">Níquel</td>
+    <td class="no_reportados">Plomo</td>
+    <td class="no_reportados">Toluen diisocianato</td>
+    <td class="no_reportados">Tolueno</td>
+    <td class="no_reportados">Xileno</td>
+    <td class="no_reportados">1,1,2- tricloroetano</td>
+    <td class="no_reportados">1,1,2,2- tetracloroetano</td>
+    <td class="no_reportados">1,1'- dimetil-4,4'-bipiridinio</td>
+    <td class="no_reportados">1,1-metileno bis(4-isocianato de ciclohexano)</td>
+    <td class="no_reportados">1,2,4- triclorobenceno</td>
+     <td class="no_reportados">1,2,5,6,9,10- hexabromociclodecano</td>
+    <td class="no_reportados">1,2- diclorobenceno</td> 
+</tr>
+
+
+</tbody>
+
+</table>
+
+<div id="panel">
+
+<h2>Información</h2>
+
+<p>Haz clic en una celda.</p>
+
+</div>
+
+<script>
+
+const panel=document.getElementById("panel");
+
+const celdas=document.querySelectorAll("td");
+
+celdas.forEach(celda=>{
+
+    celda.addEventListener("click",function(){
+
+        //Quitar selección anterior
+        celdas.forEach(c=>c.classList.remove("seleccionada"));
+
+        //Seleccionar la actual
+        this.classList.add("seleccionada");
+
+        //Obtener datos
+        const municipio=this.dataset.municipio;
+        const anio=this.dataset.anio;
+        const partido=this.innerText;
+        const texto=this.dataset.texto
+
+        //Actualizar panel
+        panel.innerHTML=`
+
+        <h2>${municipio}</h2>
+
+        <p><b>Año:</b> ${anio}</p>
+
+        <p><b>Partido:</b> ${partido}</p>
+
+        <p> ${texto} </p>
+
+        `
+        //Colores celdas
+
+        
+        ;
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
